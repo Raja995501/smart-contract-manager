@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="parent(content)" class="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Tailwind CSS (for dark mode) -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    
+    <!-- Flowbite for extended functionality -->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{'/css/output.css'}"/>
+    <title th:text="${title}">Base Layout</title>
+    <link rel="stylesheet" th:href="@{'/css/style.css'}"/>
+</head>
+<body class="dark:bg-gray-900 dark:text-white" style="padding-top: 80px;">
+    
+
+    <!-- Navbar -->
+    <div th:if="${loggedUser}">
+        <div th:replace="~{user/user_navbar::user_navbar}"></div>
+     </div>
+
+     <div th:unless="${loggedUser}">
+        <div th:replace="~{navbar::navbar}"></div>
+     </div>
+
+    
+    
+
+    <!-- Content Placeholder -->
+    <div th:replace="${content}" class="mt-2 sm:mt-4 lg:mt-8"></div> 
+    
+    <!-- Flowbite JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+
+        <!-- JavaScript to Toggle Theme -->
+        <script>
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+    
+            // Check and apply saved theme preference from localStorage
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            if (currentTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                themeText.textContent = 'Dark';
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                themeText.textContent = 'Light';
+            }
+    
+            // Toggle theme on button click
+            themeToggleBtn.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                const isDarkMode = document.documentElement.classList.contains('dark');
+                
+                // Update the button icon and text
+                if (isDarkMode) {
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                    themeText.textContent = 'Dark';
+                    localStorage.setItem('theme', 'dark');  // Save preference
+                } else {
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
+                    themeText.textContent = 'Light';
+                    localStorage.setItem('theme', 'light'); // Save preference
+                }
+            });
+        </script>
+</body>
+</html>

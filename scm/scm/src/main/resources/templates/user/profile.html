@@ -1,0 +1,32 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  th:replace="~{base::parent(~{::section})}">
+<head>
+	<meta charset="UTF-8" />
+	<title>User profile</title>
+</head>
+<body>
+<section>
+   
+    <div th:if="${loggedUser}">
+        <div th:replace="~{user/sidebar::sidebar}"></div>
+     </div>
+
+     <div class="sm:pl-64 pt-20">
+    <h1 >this is User profile</h1>
+    <h1 th:text="${loggedUser.name}"></h1>
+    <h1 th:text="${loggedUser.email}"></h1>
+    <div th:if="${loggedUser}">
+        <h1>user logged in</h1>
+    </div>
+
+	<div>
+	
+</div>
+</div>
+</section>
+</body>
+</html>
+
+    

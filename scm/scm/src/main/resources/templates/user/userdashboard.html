@@ -1,0 +1,26 @@
+
+  
+    <!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  th:replace="~{base::parent(~{::section})}">
+<head>
+	<meta charset="UTF-8" />
+	<title>About Page</title>
+</head>
+
+<body>
+<section>
+	<!-- sideBar -->
+	<div th:if="${loggedUser}">
+        <div th:replace="~{user/sidebar::sidebar}"></div>
+     </div>
+	<div>
+	<h1>User DashBoard</h1>
+	<h2>DashBoard</h2>
+    <h1>Ram Ram</h1>
+    <a  th:href="@{'/do-logout'}">logout</a>
+</div>
+</section>
+</body>
+</html>
+

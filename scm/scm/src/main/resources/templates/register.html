@@ -1,0 +1,105 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" 
+th:replace="~{base::parent(~{::section})}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+
+  
+</head>
+<body >
+  <section class="">
+  <div id="content"  >
+    <div class="grid grid-cols-12">
+      <div class="col-span-4 md:col-span-4 lg:col-span-3 xl:col-span-4"></div>
+  <div class="col-span-12 md:col-span-8 lg:col-span-6 xl:col-span-4">
+
+    <!-- card -->
+
+    <div class="w-full max-w-sm p-4 flex items-center justify-center bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <!-- th:object="${userform}"-it is used for send data from backend.it put on for section -->
+      <!-- th:field="*{name}"- it is used in name field -->
+      <!-- th:field="*{email}"- it used in email field -->
+      <!-- th:field="*{phno}"-it used in field form -->
+       <!-- same we can use every field -->
+      <form class="space-y-2" th:action="@{'/do-register'}" method="post" th:object="${userform} "> <!-- Reduced space-y-6 to space-y-4 -->
+          <h5 class="text-xl font-medium text-gray-900 dark:text-white text-center">SignUp Here</h5>
+         <!-- generate earning message -->
+          <div th:replace="~{message::message}"></div>
+          
+          <!-- Name field -->
+          <div>
+            <label for="name" class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">Your name</label> <!-- Reduced margin -->
+            <input type="name"  name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="abc" required />
+            <p data-th-if="${#fields.hasErrors('name')}" 
+            data-th-errors="*{name}" 
+            class="text-red-600 px-1 py-1">
+         </p>
+          </div>
+          
+          <!-- Email field -->
+          <div>
+              <label for="email"  class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">Your email</label> <!-- Reduced margin -->
+              <input type="email"  name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
+              <p data-th-if="${#fields.hasErrors('email')}" 
+            data-th-errors="*{email}" 
+            class="text-red-600 px-1 py-1">
+         </p>
+          </div>
+          
+          <!-- Phone number field -->
+          <div>
+              <label for="phone"  class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">Your phone</label> <!-- Reduced margin -->
+              <input type="tel"  name="phno" id="phno" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="123-456-7890" required />
+              <p data-th-if="${#fields.hasErrors('phno')}" 
+            data-th-errors="*{phno}" 
+            class="text-red-600 px-1 py-1">invalid
+         </p>
+          </div>
+          
+          <!-- Password field -->
+          <div>
+              <label for="password" class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">Your password</label> <!-- Reduced margin -->
+              <input type="password"  name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
+              <p data-th-if="${#fields.hasErrors('password')}" 
+            data-th-errors="*{password}" 
+            class="text-red-600 px-1 py-1">
+         </p>
+          </div>
+    
+          <!-- About field (textarea) -->
+          <div>
+              <label for="about"  class="block mb-0.5 text-sm font-medium text-gray-900 dark:text-white">About you</label> <!-- Reduced margin -->
+              <textarea name="about"  id="about" rows="3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Tell us about yourself..."></textarea>
+              <p data-th-if="${#fields.hasErrors('about')}" 
+            data-th-errors="*{about}" 
+            class="text-red-600 px-1 py-1">
+         </p>
+          </div>
+          
+          <!-- Remember me and Lost Password -->
+        
+          
+          <!-- Submit button -->
+          <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Signup</button>
+          
+          <!-- Login link -->
+          <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+              registered? <a th:href="${'/login'}" class="text-blue-700 hover:underline dark:text-blue-500">login</a>
+          </div>
+      </form>
+    </div>
+  
+    
+<!-- End of card -->
+
+  </div>
+
+    </div>
+    
+
+</div>
+</section>
+</body>
+</html>
